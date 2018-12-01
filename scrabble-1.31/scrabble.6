@@ -1,0 +1,509 @@
+.\" @(#)scrabble.6 1.03 92/09/16 JAC
+.TH SCRABBLE 6 "5 October 1992"
+.SH NAME
+scrabble \- play the Scrabble(TM) board game
+.SH SYNOPSIS
+.B scrabble
+.SH DESCRIPTION
+.LP
+.B scrabble
+is a computer version of the Milton Bradley board game, Scrabble.
+Only one human player plays; the user may select the number of
+computer opponents, from one to three.
+.SH BASIC SCRABBLE RULES
+.LP
+The object of the game is to form English words in a
+crossword\-like grid.  Words are formed using
+.I tiles,
+each of which has a letter on it.
+The player with the highest score at the
+end of the game is the winner.
+.LP
+Each letter has a
+particular score associated with it.  For example, the letter
+.B E
+is worth one point, while
+.B Q
+is worth ten points.  There are a fixed number of tiles with
+each letter.  For example, there are twelve
+.B E
+tiles, and only one
+.B Q
+tile.  There are also two blank tiles, which
+may be used as any letter. Once a blank tile is placed on the
+board as a certain letter, that letter may not change.
+.LP
+Each player starts with seven tiles,
+which are placed in their
+.I rack.
+These tiles are drawn from a shuffled pool of
+one hundred tiles.
+.LP
+The first player to
+move must play a word that covers the center square;
+as well, this player must place two or more of their
+tiles.  After the first move,
+players take turns placing one or more of their tiles
+on the board, so as to form new words in the
+standard crossword\-like manner: new words must read
+across or down, not diagonally.
+.LP
+New words may be formed one of three ways:
+.TP
+1.
+By adding a tiles to an already existing word, e.g.,
+adding
+.B ABLE
+to
+.B READ.
+.TP
+2.
+By adding tiles that intersect another word, e.g.,
+spelling
+.B WARY
+by placing 
+.B W,
+.B R,
+and
+.B Y
+around the
+.B A
+of
+.B REAL.
+.TP
+3.
+By spelling a word in one direction and forming
+new words in the other direction, e.g., by adding
+.B FOX
+next to
+.B PIG
+so that the
+.B I
+of
+.B PIG
+is used to spell
+.B IF
+with the
+.B F
+from
+.B FOX
+and, similarly, the
+.B G
+is used to spell
+.B GO.
+.LP
+If all the new words formed are valid English words,
+that player's score is increased by the value of the
+tiles in
+.I all
+new words formed.  The player then draws new tiles from
+the pool until the player again has seven tiles in his/her
+rack, or until there are no more tiles left to draw.
+.LP
+If
+.I any
+of the new
+words formed are not valid English words, the player
+scores zero for that turn, and must remove the tiles just
+placed from the board and replace them in his/her rack.
+.LP
+Valid English words in Scrabble constitute any word so long
+as it is not an abbreviation (LTD, CORP), is not normally
+capitalized (MATTHEW, LONDON), does not contain punctuation
+(COLD\-HEARTED, CAN'T),
+and is not a prefix or suffix (PRE, ATION).
+Foreign words that are used frequently in English
+are allowed (words such as CIAO and QUO).  Slang
+and colloquial words are also allowed.
+.LP
+Once a tile has been placed on the board, it may not
+be moved.
+.LP
+Certain board squares are special, in that they increase
+the value of a letter or a word.  Double and triple letter
+squares increase the value of a tile by double and triple,
+respectively.  Double and triple word scores increase the
+value of a word by double and triple, respectively.  Double
+and triple letter squares are counted
+.I before
+double and triple word squares.  These special squares only
+count on the turn in which they are covered; the squares
+are no longer special in subsequent turns.
+.LP
+A player who uses all seven tiles on one turn gets a premium
+of fifty points on top of the regular score for that turn.
+.LP
+Instead of placing tiles, a player may forfeit his/her
+turn and draw between zero and seven new tiles.  The player
+selects which of his/her tiles to replace, puts them back
+in the pool, and then draws the same number of tiles from
+the pool again.  A player doing this scores zero for that
+turn.
+.LP
+The game ends when there are no tiles left to draw and
+one player has no tiles left to place,
+.I or
+when no player can make a valid move.  Each player's score
+is adjusted by subtracting from it
+the value of each tile remaining
+in his/her own rack.  As well, if one player uses all his/her
+tiles, his/her score is increased by the sum of all unplayed
+letters in the other players' racks.  The player with the
+highest score wins the game.  In the event of a tie, the
+player with the highest score prior to the score adjustment
+is the winner.
+.SH SCRABBLE SCREEN LAYOUT
+.LP
+The upper\-left side of the screen lists the special board
+symbols used in
+.B scrabble.
+.TP
+\+
+Double letter score.
+.TP
+\#
+Triple letter score.
+.TP
+o
+Double word score.
+.TP
+\@
+Triple word score.
+.TP
+*
+Blank tile.  This is the character displayed in a player's
+rack when he/she owns a blank tile.  Once the tile is
+placed on the board, it is shown in lower\-case as the letter
+it represents.
+.LP
+The lower\-left side of the screen lists the value of each
+tile, as well as the total number of tiles of each type.
+For example, "A\-1, 9" means that there are a total of nine
+tiles with
+.B A
+on them, and that each tile is worth one point.
+.LP
+The center of the screen shows the
+.B scrabble
+board.
+.LP
+The upper\-right of the screen displays the number of
+tiles left in the pool to draw.  As well, it displays
+the number of passed turns, if any.
+.LP
+The central\-right of the screen shows all players'
+tile racks.  The computer players' tiles are represented
+by dashes.  As well, the computer players' skill levels
+are displayed in brackets next to their designations
+(e.g., CPU1).  Finally, each player's score is shown here.
+.LP
+The lower\-right of the screen indicates the location of
+any blank tiles that have been placed on the board, as
+well as the letter they represent.
+.LP
+The bottom of the screen is the message and input area.
+.SH PLAYING SCRABBLE
+.LP
+The user must select the number of computer players
+to play against.  Then, each player draws a tile.
+The player with the lowest tile alphabetically starts
+the game.  A blank tile is considered lower alphabetically
+than all other letters.
+.LP
+The user then selects the skill level of each
+computer player.  Skill levels go from 1 (easy to beat)
+to 5 (hard to beat, but still possible), and skill level
+6 ("expert mode") makes the computer player play its
+highest\-scoring move every turn.
+.LP
+When it is the computer's turn to play, it searches the
+board for a move.  The cursor shows the square that the
+computer is thinking about playing on.  After the search,
+the computer chooses its move based on its skill level.
+If it could not find a move, it will say so.
+.LP
+When it is your turn to play, the cursor
+starts at the upper\-left corner of the board.  The following
+keys may then be used.
+.TP
+h
+Moves the cursor left.  If the cursor is on the left edge
+of the board, this key has no effect.
+.TP
+j
+Moves the cursor down.  If the cursor is on the bottom edge
+of the board, this key has no effect.
+.TP
+k
+Moves the cursor up.  If the cursor is on the top edge
+of the board, this key has no effect.
+.TP
+l
+Moves the cursor right.  If the cursor is on the right edge
+of the board, this key has no effect.
+.TP
+^L
+Redraws the screen.  This is provided in case the screen
+should somehow become corrupted.
+.TP
+RETURN
+Starts placing tiles on the board.  If the cursor is over
+a square that is already occupied by a tile, this key has
+no effect.  More on this key below.
+.TP
+SPACE
+Rearrange your tiles.  Sometimes it's easier to see what words
+you can form if you group your tiles in your rack a certain
+way.  This key allows you to regroup your tiles.  Typing the
+letter of a tile in your rack moves it to the end of your rack.
+Use the asterisk for a blank tile.  Pressing RETURN exits this
+mode.
+.TP
+\\.
+Draw new tiles.  If you really hate the tiles in
+your rack, or even if you
+don't, you can replace none, some, or all of your tiles and
+draw (potentially) new ones.
+Type this key, followed by the
+letters in your rack that you wish to replace.  Pressing dash
+or DEL will put your most recent selection back in your rack.
+Pressing ESC will cancel this operation, and pressing RETURN
+will ask you to confirm your selection.
+.TP
+.I Note
+.I If you cannot move
+and wish to pass your turn,
+then you must press the "Draw new tiles" key,
+and then draw zero new tiles.
+.LP
+Once you press RETURN to start placing tiles, you can press
+either 
+.I h
+or
+.I v
+to place your tiles horizontally or vertically,
+respectively.
+.LP
+Then, you simply begin typing.  Each time you type a tile
+that is in your rack, the tile is placed on the board at the
+cursor's position.  The cursor then moves to the next blank
+square in the appropriate direction.  If you type a letter
+that is not in your rack, it is ignored
+.I except
+if you have a blank tile.  In this case, the blank tile is
+placed on the board for you.  If you type an asterisk and you
+have a blank tile, it is placed on the board as usual.
+.LP
+While typing, you may press dash or DEL to remove the last
+tile placed from the board and put it back in your rack.  Or, you
+may press ESC to cancel this particular placement all together.
+If you're satisfied with what you've placed, you may press
+RETURN.  If you placed any blank tiles by typing asterisk, you
+will be asked for the letters that the blank tiles represent.
+Press RETURN to confirm your move, or
+.I n
+to alter it.
+.LP
+Your words are then checked against the dictionary.  If all
+the words are in the dictionary, your score is increased and
+new tiles are drawn for you.  If any of your words are not
+in the dictionary, you are asked if said words are valid
+.B scrabble
+words.  You are expected to answer honestly!  If any word is
+invalid, your tiles are removed from the board and replaced in
+your rack.  If the word is valid, it is added to the dictionary.
+So beware!  The computer players can then use the word too.
+.LP
+.B scrabble
+does all the drawing of new tiles automatically.  It also
+does all the scoring, including the score adjustments at the
+end of the game.  It can even handle multiple\-way ties at the
+end of the game, should this unlikely event occur.
+.LP
+At the end of the game, if any words have been added to
+the dictionary,
+.B scrabble
+will ask you if you want to save the dictionary.  If you
+say yes, the old dictionary file is overwritten with the
+new one.  Otherwise, the original dictionary remains intact.
+(The option of rewriting the dictionary is useful if you
+were simply cheating and spelling really long garbage words
+for the satisfaction of totally annihilating the computer.)
+.LP
+One minor point: often throughout the game, you will be
+prompted to "Press <RETURN>".  If you press the
+.I q
+key followed by RETURN, you will exit scrabble.  This can
+be safer than pressing an interrupt key to exit, which may
+mess up your window.
+.SH COMPUTER PLAYERS' ALGORITHM
+.LP
+For the curious, here is a brief description of how the
+computer players decide on their moves.
+.LP
+If the board is empty, the computer simply searches the
+dictionary for any word whose length is between two and
+seven that can be formed with its tiles.  It stores all
+possibilities, and computes the score for all possible
+placements of each word.
+.LP
+For the remainder of this section, a
+.I legal move
+is one which adjoins to the existing puzzle.
+.LP
+The computer players do an exhaustive search of the board,
+finding all positions in which a legal move can be made.
+.LP
+At each square, the computer determines how many of its tiles
+it can place and still be a legal move.  This can be anywhere
+between one and seven tiles, inclusive.  For example, the
+computer might be able to place any number of tiles between
+three and seven, and still be making a legal move.  The computer
+then performs an exhaustive dictionary search for each of
+these numbers of tiles.  In the example, the computer would
+perform five exhaustive searches.
+.LP
+The searching algorithm prunes the search tree in three ways.
+.TP
+1.
+For a given number of tiles to be placed (say three),
+all words formed will be of the same length (say four).  Thus,
+the computer only need search all four\-letter words.
+.TP
+2.
+Often one or more of the letters in the new word to be formed
+will be fixed, because the computer might be adding to
+a word that has already been placed on the board.  For example,
+if the word
+.B WENT
+is on the board horizontally, the computer might be trying
+to add a word vertically to the
+.B N.
+Thus, any
+word that does not have the fixed letter(s) in the proper
+place(s) can be eliminated right away.
+.TP
+3.
+The computer might be forming other words in the opposite
+direction to which it is placing tiles.
+For example, suppose the computer
+is trying to form a word horizontally with three tiles.
+Furthermore, suppose that its first tile has to adjoin
+to a vertical word such as
+.B PIT.
+Then, the computer checks
+if it can form a valid word of the form
+.B PIT_
+(where the
+underscore represents an unknown tile) before the
+exhaustive search.  In this case, the computer would
+have to own an
+.B A,
+.B H,
+.B S,
+or
+.B Y
+to form
+.B PITA,
+.B PITH,
+.B PITS,
+or
+.B PITY.
+Otherwise, the search would be abandoned.
+.LP
+The computer stores all possible moves in a linked list sorted
+from highest\-scoring move to lowest\-scoring move.  Once the
+search is complete, the computer then selects a move.  In expert
+mode (level 6), the computer merely chooses the move at the
+head of the list.  On the other levels, the computer picks
+a move using a normal p.d.f.  The mean of the distribution is
+placed close to the highest\-scoring move on level 5, and
+sort of close to the lowest\-scoring move on level 1.  The standard
+deviation of the distribution is one\-fifth of the number
+of distinct scores that each move might give.  For example,
+the computer might be able to make moves that would give it
+4, 6, 7, 9, or 10 points.  In this case, the standard deviation
+would be one.
+.SH FILES
+.TP
+scrabble
+This is the executable file.
+.TP
+scrabbledict
+This is the dictionary file.
+.SH DICTIONARY FILES
+.LP
+If desired, the user may supply his/her own version of
+the dictionary file.
+The dictionary file must have the following properties:
+.TP
+1.
+It must be sorted from shortest words (two letters)
+to longest words (fifteen letters).
+.TP
+2.
+Within each word length, the words must be sorted
+alphabetically from A to Z.
+.TP
+3.
+Words
+.I must
+be all capitals.
+.B scrabble
+ignores any word that contains
+punctuation, as well as any word longer than
+fifteen characters.
+.SH AUTHOR
+.LP
+.B scrabble
+was written by James A. Cherry, at Carleton University,
+Ottawa, Ontario, Canada.  Questions, comments, etc., may
+be addressed to jac@doe.carleton.ca.
+.SH BUGS
+.LP
+The computer search algorithm is highly inelegant.  It is
+simply brute\-force.
+.LP
+.B scrabble
+is a complete pig for memory; it stores the entire dictionary
+in memory for fast searching.  Also, every possible computer
+move on a given turn is stored; no moves are erased until the
+computer has decided on its move.  Since it is sometimes
+possible to make 3,000 or more moves, the move list occupies
+a large chunk of memory.
+.LP
+If you play a garbage word, and tell the computer that it really
+is a word, it will believe you.
+.LP
+The whole concept of challenging another
+player's word is non\-existent in
+.B scrabble.
+This is unfortunate, as it is an important part of the game.
+The computer players only spell words that are in the dictionary.
+They never try to "pull a fast one" on you.  Likewise, if the
+computer plays a word that you're
+.I sure
+is not a valid
+.B scrabble
+word, it will not allow you to challenge it.  After all, the
+word was in the dictionary, so it
+.I must
+be valid.  (Yeah, right.)  Perhaps removing the offending
+word from the dictionary at the end of the game is the solution.
+.LP
+In expert mode, the computers are practically impossible to beat.
+.LP
+There is no way to get the computer to suggest a move for you.
+.LP
+On any level but expert, the computer players tend to keep their
+Q and Z tiles right until the end; this means they lose a lot of
+points after the game is over.  Even a bad human player would try
+to get rid of these high\-scoring tiles quickly, but the computer's
+algorithm does not allow it to.
+.LP
+Interrupt characters are not caught, and they might mess up your
+window to the point that it is no longer usable.
+.LP
+If something bad happens (like an interrupt character) while
+.B scrabble
+is re\-writing the dictionary, the dictionary file might be lost.

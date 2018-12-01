@@ -1,0 +1,14 @@
+Changes:
+   - Makefile
+   Created an install rule.
+
+   Added -DDICTFILE=\"$(LIBDIR)/scrabbledict\" to CFLAGS to make
+   program use installed dictionary.
+
+
+To build:
+   make
+
+
+To install:
+   make install
